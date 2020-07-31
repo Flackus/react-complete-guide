@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Person from './Person/Person';
 
-import './App.css';
+import classes from './App.css';
 
 class App extends Component {
     state = {
@@ -53,6 +53,7 @@ class App extends Component {
 
     render() {
         let persons = null;
+        const buttonClasses = [classes.Button];
 
         if (this.state.showPersons) {
             persons = (
@@ -67,22 +68,25 @@ class App extends Component {
                     })}
                 </div>
             );
+            buttonClasses.push(classes.Red);
         }
 
-        const classes = [];
+        const assignedClasses = [];
         const personsLength = this.state.persons.length;
         if (personsLength <= 2) {
-            classes.push('red');
+            assignedClasses.push(classes.red);
         }
         if (personsLength <= 1) {
-            classes.push('bold');
+            assignedClasses.push(classes.bold);
         }
 
         return (
-            <div className='App'>
+            <div className={classes.App}>
                 <h1>Hi, I'm a React app</h1>
-                <p className={classes.join(' ')}>This is really working!</p>
-                <button className='button' onClick={this.togglePersonsHandler}>Toggle persons</button>
+                <p className={assignedClasses.join(' ')}>This is really working!</p>
+                <button
+                    className={buttonClasses.join(' ')}
+                    onClick={this.togglePersonsHandler}>Toggle persons</button>
                 {persons}
             </div>
         );
