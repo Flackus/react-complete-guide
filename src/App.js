@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Validation from './Validation/Validation';
+import Char from './Char/Char';
 
 class App extends Component {
     state = {
@@ -21,7 +23,8 @@ class App extends Component {
                 age: 26
             }
         ],
-        showPersons: false
+        showPersons: false,
+        userInput: ''
     }
 
     deletePersonHandler = (personIndex) => {
@@ -47,6 +50,15 @@ class App extends Component {
     togglePersonsHandler = () => {
         const doesShow = this.state.showPersons;
         this.setState({showPersons: !doesShow});
+    }
+
+    inputChangeHandler = (event) => {
+        this.setState({userInput: event.target.value});
+    }
+
+    removeCharHandler = (_, index) => {
+        const value = this.state.userInput;
+        this.setState({userInput: value.substring(0, index) + value.substring(index + 1)});
     }
 
     render() {
@@ -79,6 +91,24 @@ class App extends Component {
                 <h1>Hi, I'm a React app</h1>
                 <button style={style} onClick={this.togglePersonsHandler}>Toggle persons</button>
                 {persons}
+                <div className='form'>
+                    <input
+                        type="text"
+                        value={this.state.userInput}
+                        onChange={this.inputChangeHandler} />
+                    <p>{this.state.userInput.length}</p>
+                    <Validation
+                        length={this.state.userInput.length} />
+                    <div>
+                        {this.state.userInput.split('').map((char, index) => {
+                            return <Char
+                                click={(event) => this.removeCharHandler(event, index)}
+                                key={index}>
+                                {char}
+                            </Char>;
+                        })}
+                    </div>
+                </div>
             </div>
         );
     }
