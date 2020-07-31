@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "radium": "^0.26.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "0.9.x"
+    "react-scripts": "0.9.x",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {},
   "scripts": {
