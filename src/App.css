@@ -13,3 +13,16 @@
 .bold {
     font-weight: bold;
 }
+
+.button {
+    background-color: red;
+    color: white;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+}
+
+.button:hover {
+    background-color: salmon;
+    color: black;
+}
