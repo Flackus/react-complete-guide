@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 import classes from './App.css';
 
@@ -54,43 +54,20 @@ class App extends Component {
 
     render() {
         let persons = null;
-        const buttonClasses = [classes.Button];
 
         if (this.state.showPersons) {
-            persons = (
-                <div>
-                    {this.state.persons.map((person, index) => {
-                        return (
-                            <ErrorBoundary key={person.id}>
-                                <Person
-                                    click={() => this.deletePersonHandler(index)}
-                                    name={person.name}
-                                    age={person.age}
-                                    changed={(event) => this.nameChangedHandler(event, person.id)} />
-                            </ErrorBoundary>
-                        );
-                    })}
-                </div>
-            );
-            buttonClasses.push(classes.Red);
-        }
-
-        const assignedClasses = [];
-        const personsLength = this.state.persons.length;
-        if (personsLength <= 2) {
-            assignedClasses.push(classes.red);
-        }
-        if (personsLength <= 1) {
-            assignedClasses.push(classes.bold);
+            persons = <Persons
+                persons={this.state.persons}
+                clicked={this.deletePersonHandler}
+                changed={this.nameChangedHandler} />;
         }
 
         return (
             <div className={classes.App}>
-                <h1>Hi, I'm a React app</h1>
-                <p className={assignedClasses.join(' ')}>This is really working!</p>
-                <button
-                    className={buttonClasses.join(' ')}
-                    onClick={this.togglePersonsHandler}>Toggle persons</button>
+                <Cockpit
+                    showPersons={this.state.showPersons}
+                    persons={this.state.persons}
+                    clicked={this.togglePersonsHandler} />
                 {persons}
             </div>
         );
