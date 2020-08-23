@@ -1,5 +1,6 @@
 .Post {
     width: 250px;
+    height: 90%;
     padding: 16px;
     text-align: center;
     border: 1px solid #eee;
@@ -11,7 +12,8 @@
 
 .Post:hover,
 .Post:active {
-    background-color: #C0DDF5;
+    background-color: #c0ddf5;
+    border-color: #c0ddf5;
 }
 
 .Author {
