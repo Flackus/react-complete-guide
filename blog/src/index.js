@@ -8,7 +8,6 @@ axios.defaults.baseURL = 'http://jsonplaceholder.typicode.com';
 axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 
 axios.interceptors.request.use(requestConfig => {
-    console.log(requestConfig);
     // Edit request config
     return requestConfig;
 }, error => {
